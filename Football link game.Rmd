@@ -1,0 +1,82 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(worldfootballR)
+library(dplyr)
+```
+
+```{r}
+a <- tm_league_team_urls(country_name = "France", start_year = 2010)
+b <- tm_league_team_urls(country_name = "England", start_year = 2010)
+c <- tm_league_team_urls(country_name = "Spain", start_year = 2010)
+d <- tm_league_team_urls(country_name = "Germany", start_year = 2010)
+e <- tm_league_team_urls(country_name = "Italy", start_year = 2010)
+f <- tm_league_team_urls(country_name = "Portugal", start_year = 2010)
+g <- tm_league_team_urls(country_name = "Netherlands", start_year = 2010)
+```
+
+
+```{r}
+all_team_urls <- c(a,b,c,d,e,f,g)
+```
+
+```{r}
+b7_2010 <- tm_squad_stats(all_team_urls)
+```
+
+```{r}
+b7_2023
+b7_2022
+b7_2021 # 84% error
+b7_2020 # 84% error
+b7_2019 # multiple errors
+b7_2018
+b7_2017 # multiple errors
+b7_2016
+b7_2015
+b7_2014
+b7_2013
+b7_2012
+b7_2011
+b7_2010
+```
+```{r}
+copy_2023 <- b7_2023
+copy_2022 <- b7_2022
+copy_2021 <- b7_2021
+copy_2020 <- b7_2020
+copy_2019 <- b7_2019
+copy_2018 <- b7_2018
+copy_2017 <- b7_2017
+copy_2016 <- b7_2016
+copy_2015 <- b7_2015
+####
+copy_2014 <- b7_2014
+copy_2013 <- b7_2013
+copy_2012 <- b7_2012
+copy_2011 <- b7_2011
+copy_2010 <- b7_2010
+```
+
+
+
+```{r}
+copy_2010 <- copy_2010 %>%
+  mutate(year = 2010, .before = 1)
+```
+
+```{r}
+new_df <- rbind(copy_2010,copy_2011,copy_2012,copy_2013,copy_2014,copy_2015,copy_2016,copy_2017,copy_2018,copy_2019,copy_2020,copy_2021,copy_2022,copy_2023)
+```
+
+```{r}
+new_df
+```
+
+```{r}
+write.csv(new_df, file = "C:/Users/James/Desktop/Football stats/2010_2023.csv", row.names = FALSE)
+```
+
